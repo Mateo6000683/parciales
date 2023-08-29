@@ -3,90 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        PARCIAL  29 DE AGOSTO 
-    </title>
-    <h1> TRANSFORMACIONES CONJUNTAS </h1>
+    <title>PARCIAL 29 DE AGOSTO</title>
 </head>
 <body>
+    <h1>TRANSFORMACIONES CONJUNTAS</h1>
     <p>
-        <span  style="color: rgb(14, 81, 231);">
-         Vector para la transformacion 
-        </span>
-        <span style="color: rgb(98, 96, 93);" >
-          => p1 
-        </span>
-        <input id="p1" size="30"> <!--punto 1 -->
-        <span style="color: black;">
-            ,p2 
-            <input  id="p2" size="30">
-        </span>
+        <span style="color: rgb(14, 81, 231);">Vector para la transformacion</span>
+        <span style="color: rgb(98, 96, 93);"> => p1 </span>
+        <input id="p1" size="30">
+        <span style="color: black;">, p2 <input id="p2" size="30"></span>
     </p>
     <p>
-        <span  style="color: rgb(14, 81, 231);">
-           Transformacion inicial
-           <input id="ti" size="30"> <!--Transformacion inicial -->
-    
-        </span>
+        <span style="color: rgb(14, 81, 231);">Transformacion inicial <input id="ti" size="30"></span>
+    </p>
+    <p>
+        <span style="color: rgb(14, 81, 231);">Transformacion final <input id="tf" size="30"></span>
+    </p>
+    <p>
+        <span style="color: rgb(9, 153, 26);">Vector resultado</span>
+        <input id="vr" size="25">
     </p>
 
-    <p>
-    <span>
-        <span  style="color: rgb(14, 81, 231);">
-            Transformacion final
-            <input id="tf" size="30"> <!--Transformacion Final -->
-    </span>
-   </p>
-   <p>
-    <span style="color: rgb(9, 153, 26);">
-        Vector resultado
-    </span>
-    <input id="vr" size="25">
-</p>
+    <button onclick="Translacion1()">Procesar</button>
 
-<button onclick="Translacion1()">Procesar </button>
-
-<script>
-    function strarr2num(arreglo, lim)
-     {
-    var arrs = arreglo.split(lim);
-    arrn = [];
-    arrs.forEach((elem) => {
-        arrn.push(Number(elem));
-    });
-    return arrn;
-}
-function byId(id) {
-    return document.getElementById(id).value;
-}
-function multiplicarMatrizVector(matriz, vector) {
-    var resultado = [];
-    for (var i = 0; i < matriz.length; i++) {
-        var sum = 0;
-        for (var j = 0; j < vector.length; j++) {
-            sum += matriz[i][j] * vector[j];
+    <script>
+        function strarr2num(arreglo, lim) {
+            var arrs = arreglo.split(lim);
+            arrn = [];
+            arrs.forEach((elem) => {
+                arrn.push(Number(elem));
+            });
+            return arrn;
         }
-        resultado.push(sum);
-    }
-    return resultado;
-}
-    function Translacion1()
-{
-   var p1n=strarr2num(byId("p1"),",");
-   var p2n =strarr2num(byId("p2"),","); 
-   var tin =strarr2num(byId("ti"),","); 
-   var tfn =strarr2num(byId("tf"),","); 
-   let matrizTrasl = tin;
-   let matrizTras2 = tfn;
-var resultado1 = multiplicarMatrizVector(matrizTrasl, p1n)+multiplicarMatrizVector(matrizTras2, p1n);
-var resultado2 = multiplicarMatrizVector(matrizTrasl, p2n)+multiplicarMatrizVector(matrizTras2, p2n);
-  alert(resultado1);
-  alert(resultado2);
-  document.getElementById("vr").value = resultado.slice(0, 3).join(", ");
 
-    }
-      
+        function byId(id) {
+            return document.getElementById(id).value;
+        }
 
-  </script>
+        function multiplicarMatrizVector(matriz, vector) {
+            var resultado = [];
+            for (var i = 0; i < matriz.length; i++) {
+                var sum = 0;
+                for (var j = 0; j < vector.length; j++) {
+                    sum += matriz[i][j] * vector[j];
+                }
+                resultado.push(sum);
+            }
+            return resultado;
+        }
+
+        function Translacion1() {
+            var p1n = strarr2num(byId("p1"), ",");
+            var p2n = strarr2num(byId("p2"), ",");
+            var tin = strarr2num(byId("ti"), ",");
+            var tfn = strarr2num(byId("tf"), ",");
+            let matrizTrasl = [tin]; // Define matrizTrasl como una matriz de una fila
+            let matrizTras2 = [tfn]; // Define matrizTras2 como una matriz de una fila
+            
+            var resultado1 = multiplicarMatrizVector(matrizTrasl, p1n);
+            var resultado2 = multiplicarMatrizVector(matrizTras2, p1n);
+            
+            var resultado3 = multiplicarMatrizVector(matrizTrasl, p2n);
+            var resultado4 = multiplicarMatrizVector(matrizTras2, p2n);
+            
+            
+            document.getElementById("vr").value = [resultado3[0], resultado4[1]].join(", ");
+            alert(resultado1);
+            alert(resultado2);
+            alert(resultado3);
+            alert(resultado4);
+
+        }
+    </script>
 </body>
 </html>
