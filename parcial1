@@ -34,7 +34,7 @@
     <span>
         <span  style="color: rgb(14, 81, 231);">
             Transformacion final
-            <input id="ti" size="30"> <!--Transformacion Final -->
+            <input id="tf" size="30"> <!--Transformacion Final -->
     </span>
    </p>
    <p>
@@ -59,15 +59,30 @@
 function byId(id) {
     return document.getElementById(id).value;
 }
-
-    function Translacion1(){
-   let p1n =strarr2num(byId("p1"),",");
-   let p2n =strarr2num(byId("p2"),","); 
-
-  alert(p1n[0]+p1n[1]+p1n[2]);
-  alert(p2n[0]+p2n[1]+p2n[2]);
-
-
+function multiplicarMatrizVector(matriz, vector) {
+    var resultado = [];
+    for (var i = 0; i < matriz.length; i++) {
+        var sum = 0;
+        for (var j = 0; j < vector.length; j++) {
+            sum += matriz[i][j] * vector[j];
+        }
+        resultado.push(sum);
+    }
+    return resultado;
+}
+    function Translacion1()
+{
+   var p1n=strarr2num(byId("p1"),",");
+   var p2n =strarr2num(byId("p2"),","); 
+   var tin =strarr2num(byId("ti"),","); 
+   var tfn =strarr2num(byId("tf"),","); 
+   let matrizTrasl = tin;
+   let matrizTras2 = tfn;
+var resultado1 = multiplicarMatrizVector(matrizTrasl, p1n)+multiplicarMatrizVector(matrizTras2, p1n);
+var resultado2 = multiplicarMatrizVector(matrizTrasl, p2n)+multiplicarMatrizVector(matrizTras2, p2n);
+  alert(resultado1);
+  alert(resultado2);
+  document.getElementById("vr").value = resultado.slice(0, 3).join(", ");
 
     }
       
